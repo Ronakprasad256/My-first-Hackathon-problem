@@ -22,9 +22,22 @@ const addProduct = async (req, res) => {
     }
 };
 
+const deleteProduct = async (req, res) => {
+    try {
+        const id = req.params.id;
+        await productRepo.remove(id);
+        res.status(204)
+        res.send("Deleted")
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server error");
+    }
+};
+
 module.exports = {
     getAll,
     addProduct,
+    deleteProduct,
 };
 
 
